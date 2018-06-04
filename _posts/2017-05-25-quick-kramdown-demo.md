@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: ture
 title: "Quick kramdown demo"
 description: "A quick demo post to some kramdown features."
 categories: [demo]
