@@ -57,7 +57,7 @@ blog:
 
 disqus:
   shortname: blog_software
-  public_key: yKtM5cjYw6tKDiYhvFQ8zvPuZthaB24n9hVaCfhktKuSj4wkiCRApVJXSMNpNAj9
+  public_key: ab74bc70558443308915011049fbc290
 google_analytics: # e.g. 'UA-42456515-5'
 addthis_public_id: # AddThis sharing plugin. See http://www.addthis.com/. E.g. ra-53329e27694534j5 
 
