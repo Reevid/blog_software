@@ -12,8 +12,39 @@ redirect_from:
 * Kramdown table of contents
 {:toc .toc}
 
-# 1. Remove all docker container
-{% highlight docker %}
+# 1. Remove a container
+To delete a container, you first need to know the ID of the container. The ID of the container can be obtained through ```docker ps -a```.
+
+You can delete one or more containers by typing ```docker rm [CONTAINER]``` in the terminal
+
+In addition, check the following:
+```
+docker rm --help
+
+Usage:	docker rm [OPTIONS] CONTAINER [CONTAINER...]
+
+Remove one or more containers
+
+Options:
+  -f, --force     Force the removal of a running container (uses SIGKILL)
+  -l, --link      Remove the specified link
+  -v, --volumes   Remove the volumes associated with the container
+```
+
+# 2. List up containers
+To see active docker container, type below shell shell script to terminal
+```
+docker ps
+```
+
+If you want to see all the container that not active, add ```-a``` or ```--all``` option
+```
+docker ps -a
+docker ps --all
+```
+
+# 3. Remove all container
+```
 docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
-{% endhighlight %}
+```
