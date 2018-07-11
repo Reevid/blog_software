@@ -32,7 +32,7 @@ Options:
 ```
 
 # 2. List up containers
-To see active docker container, type below shell shell script to terminal
+To see active docker container, type below shell script to terminal
 ```
 docker ps
 ```
