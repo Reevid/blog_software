@@ -4,7 +4,7 @@ comments: ture
 title: "Remove all docker container"
 description: "Remove all docker container"
 categories: [Docker]
-tags: [Docker, Container, Delete]
+tags: [Docker, Container, Delete, Stop]
 redirect_from:
   - /2018/07/10/
 ---
@@ -13,7 +13,7 @@ redirect_from:
 {:toc .toc}
 
 # 1. Remove a container
-To delete a container, you first need to know the ID of the container. The ID of the container can be obtained through ```docker ps -a```.
+To delete a container, you first need to know the ID of the container. The ID of the container can be obtained through ```docker ps -a```
 
 You can delete one or more containers by typing ```docker rm [CONTAINER]``` in the terminal
 
@@ -44,7 +44,7 @@ docker ps --all
 ```
 
 # 3. Remove all container
-You can delete the container one by one using the above command, but you can delete all containers at once by using the ```-q``` option and ```$( ... )```.
+You can delete the container one by one using the above command, but you can delete all containers at once by using the ```-q``` option and ```$( ... )```
 
 Since the container will not be deleted while it is in operation, use ```docker stop [CONTAINER]``` to stop the container and remove it.
 ```
