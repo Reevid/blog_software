@@ -2,7 +2,7 @@
 layout: post
 comments: ture
 title: "Useful Tips and Tools"
-description: "The first 'Hello world' post for Simple Texture theme."
+description: "Useful Tips and Tools"
 categories: [Tool]
 tags: [Tips, Tool, tmux]
 redirect_from:
