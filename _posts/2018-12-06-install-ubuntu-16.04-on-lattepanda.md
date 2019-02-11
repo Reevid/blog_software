@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: ture
-title: "[Draft] Install Ubuntu 16.04 on LattePanda Alpha"
+title: "Install Ubuntu 16.04 on LattePanda Alpha"
 description: "install Ubuntu 16.04 on LattePanda Alpha"
 categories: [LattePanda]
 tags: [lattepanda, ubuntu, linux]
