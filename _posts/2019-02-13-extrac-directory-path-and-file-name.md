@@ -31,7 +31,8 @@ echo RES
 
 # Extract file name
 ## Use sed
-~~~ shell
+``` shell
+#!/bin/bash
 function extract_file_name() {
     echo "${1}" | sed -r "s/.*\///"
 }
@@ -40,16 +41,17 @@ FILE_PATH=/test/test/test/asdf.txt
 RES=`extract_file_name ${FILE_PATH}`
 
 echo RES
-~~~
+```
 
 ## Use basename
 Use the `basename` command to extract the filename from the path
-~~~ shell
+``` shell
+#!/bin/bash
 FILE_PATH=/test/test/test/asdf.txt
 RES=`extract_file_name ${FILE_PATH}`
 
 echo RES`
-~~~
+```
 ## About basename
 basename is a standard computer program on Unix and Unix-like operating systems. When basename is given a pathname, it will delete any prefix up to the last slash ('/') character and return the result. basename is described in the Single UNIX Specification and is primarily used in shell scripts.
 ### Usage
