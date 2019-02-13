@@ -57,12 +57,8 @@ The Single UNIX Specification specification for basename is.
 ~~~ bash
 $ basename string [suffix]
 ~~~
-{:auto_ids}
-string
-: A pathname
-{:auto_ids}
-suffix
-: If specified, basename will also delete the suffix.
+* string : A pathname
+* suffix : If specified, basename will also delete the suffix.
 
 ### Examples
 
