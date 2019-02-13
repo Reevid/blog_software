@@ -13,20 +13,22 @@ redirect_from:
 {:toc .toc}
 
 # Exit and exit status
-`exit` 명령어는 C 프로그램에서처럼 스크립트를 끝낼 때 씁니다. 또한, 스크립트의 부모 프로세스에게 어떤 값을 돌려 줄 수도 있습니다.
 
-모든 명령어는 종료 상태(exit status (가끔은 리턴 상태( return status)라고도 하는)를 리턴합니다. 명령어가 성공시에는 0을 리턴하고 실패시에는 에러 코드로 해석될 수 있는 non-zero를 리턴합니다. 예외가 있기는 하지만, 유닉스 관례를 잘 따르는 명령어, 프로그램, 유틸리티는 성공했을 때 0을 리턴합니다.
+The `exit` command is used to end the script as in the C program. It can also return some value to the script's parent process.
 
-비슷하게, 스크립트의 함수나 스크립트 자신도 종료 상태를 리턴합니다. 스크립트 함수나 스크립트에서 가장 마지막에 실행된 명령어가 종료 상태를 결정합니다. 스크립트에서 exit nnn 이라고 하면 nnn이라는 종료 상태를 쉘에게 전달해 줍니다(nnn은 0에서 255 사이의 십진수여야 합니다).
+All commands return an exit status (sometimes referred to as return status), which returns a zero on success, or a non-zero that can be interpreted as an error code on failure. However, UNIX-compliant commands, programs, and utilities return zero on success.
 
-> 참고: 매개변수 없이 그냥 exit로 끝났을 경우에는, 마지막에 실행된 명령어(exit 자신은 빼고)의 종료 상태가 스크립트의 종료 상태가 됩니다.
+Similarly, the script's function or script itself returns the exit status. The last command executed in the script function or script determines the exit status. In the script, `exit nnn` tells the shell the exit status of `nnn` (`nnn` must be a decimal number between `0` and `255`).
 
-`$?` 는 제일 마지막 명령어의 종료 상태를 보여줍니다. 함수가 리턴한 다음에 `$?`라고 하면 함수의 마지막 명령어의 종료 상태를 알려줍니다. bash에서는 이렇게 해서 함수의 "반환값"을 돌려 줍니다. 스크립트가 종료한 다음에는 명령어줄에서 `$?`로 스크립트 마지막 명령어의 종료 상태를 알 수가 있는데 관습적으로 `0`은 성공을 나타내고 `1`에서 `255`까지의 숫자는 에러를 나타냅니다.
-    
+> Note: If you just `exit` with no parameters, the exit status of the last executed command (except exit itself) will be the exit status of the script.
+
+`$?` Shows the exit status of the last instruction. If `$?` Is returned after the function returns, the exit status of the last instruction of the function is reported. Bash does this by returning the ***return value*** of the function. After the script exits, you can use `$?` On the command line to determine the exit status of the last command in the script. Conventionally, `0` indicates success and numbers `1` through `255` indicate an error.
 
 # Example
+
 ## Exit and exit status
-```
+
+``` bash
 #!/bin/bash
 echo hello
 echo $?    # 명령어가 성공했기 때문에 종료 상태 0이 리턴됨.
@@ -36,24 +38,27 @@ echo $?    # 0이 아닌 종료 상태가 리턴됨.
 
 exit 113   # 쉘에게 113을 리턴함.
 ```
-확인해 보려면 이 스크립트가 종료된 다음에 `echo $?`라고 쳐 보세요.
 
-관습적으로 'exit 0'은 성공을 의미합니다. 0이 아닌 값은 에러나 예외상황을 나타냅니다.
+To check, type `echo $?` After this script exits.
 
-`$?` 는 스크립트에서 실행시키 명령어의 결과를 확인하는데 특별히 유용하게 쓰입니다(예 12-8 와 예 12-13 참고).
+> Conventionally `exit 0` means success.A value other than `0` indicates an error or exception.
 
-> 참고: 논리적 "부정" 한정어(qualifier)인 ! 는 테스트나 명령어의 결과를 반대로 바꿔서 종료 상태에 영향을 미칩니다. 
-
+`$?` Is particularly useful for checking the results of a command to be executed in a script
 
 ## Deny the condition with `!`
-```
+
+The logical no qualifier `!` Affects the exit status by reversing the result of a test or command.
+
+``` bash
 $ true  # 쉘 내장명령어인 "true".
-$ echo "\"true\"의 종료 상태 = $?"     
+$ echo "\"true\"의 종료 상태 = $?"
 "true"의 종료 상태 = 0
 ```
-```
+
+``` bash
 $ ! true
 $ echo "\"! true\"의 종료 상태 = $?"
 "! true"의 종료 상태 = 1
 ```
-조심할 점은 `!`을 쓸 때, 빈 칸이 있어야 된다는 것입니다. 그냥 `!true` 라고 쓰면 "command not found" 에러가 납니다.
+
+One thing to be careful about is that when you use `!`, There must be a blank space. Just write `!True` to get a ***command not found*** error.
