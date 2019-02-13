@@ -25,8 +25,10 @@ RES=`extract_directory_path ${FILE_PATH}`
 
 echo RES
 ~~~
+
 ## About sed
-`sed` (stream editor) is a Unix utility that parses and transforms text, using a simple, compact programming language. sed was developed from 1973 to 1974 by Lee E. McMahon of Bell Labs,[1] and is available today for most operating systems.[2] sed was based on the scripting features of the interactive editor ed ("editor", 1971) and the earlier qed ("quick editor", 1965?66). sed was one of the earliest tools to support regular expressions, and remains in use for text processing, most notably with the substitution command. Popular alternative tools for plaintext string manipulation and "stream editing" include AWK and Perl. 
+`sed` (stream editor) is a Unix utility that parses and transforms text, using a simple, compact programming language. sed was developed from 1973 to 1974 by Lee E. McMahon of Bell Labs,[1] and is available today for most operating systems.[2] sed was based on the scripting features of the interactive editor ed ("editor", 1971) and the earlier qed ("quick editor", 1965?66). sed was one of the earliest tools to support regular expressions, and remains in use for text processing, most notably with the substitution command. Popular alternative tools for plaintext string manipulation and "stream editing" include AWK and Perl.
+
 # Extract file name
 ## Use sed
 ~~~ shell
@@ -39,6 +41,7 @@ RES=`extract_file_name ${FILE_PATH}`
 
 echo RES
 ~~~
+
 ## Use basename
 Use the `basename` command to extract the filename from the path
 ~~~ shell
@@ -75,7 +78,8 @@ $ basename /
 /
 ~~~
 basename can also be used to remove the end of the base name, but not the complete base name
-{% highlight bash linenos=table %}
+
+~~~ bash
 $ basename /home/jsmith/base.wiki .wiki
 base
 
@@ -84,4 +88,4 @@ base.wi
 
 $ basename /home/jsmith/base.wiki base.wiki
 base.wiki
-{% endhighlight %}
+~~~
