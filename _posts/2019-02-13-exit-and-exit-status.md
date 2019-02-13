@@ -18,11 +18,11 @@ The `exit` command is used to end the script as in the C program. It can also re
 
 All commands return an exit status (sometimes referred to as return status), which returns a zero on success, or a non-zero that can be interpreted as an error code on failure. However, UNIX-compliant commands, programs, and utilities return zero on success.
 
-Similarly, the script's function or script itself returns the exit status. The last command executed in the script function or script determines the exit status. In the script, `exit nnn` tells the shell the exit status of `nnn` (`nnn` must be a decimal number between `0` and `255`).
+Similarly, the script's function or script itself returns the exit status. The last command executed in the script function or script determines the exit status. In the script, `exit nnn` tells the exit status of the script is `nnn` (`nnn` must be a decimal number between 0 and 255).
 
 > Note: If you just `exit` with no parameters, the exit status of the last executed command (except exit itself) will be the exit status of the script.
 
-`$?` Shows the exit status of the last instruction. If `$?` Is returned after the function returns, the exit status of the last instruction of the function is reported. Bash does this by returning the ***return value*** of the function. After the script exits, you can use `$?` On the command line to determine the exit status of the last command in the script. Conventionally, `0` indicates success and numbers `1` through `255` indicate an error.
+`$?` Shows the exit status of the last instruction. If `$?` Is returned after the function returns, the exit status of the last instruction of the function is reported. Bash does this by returning the ***return value*** of the function. After the script exits, you can use `$?` On the command line to determine the exit status of the last command in the script. Conventionally, 0 indicates success and numbers 1 through 255 indicate an error.
 
 # Example
 
@@ -41,11 +41,11 @@ exit 113   # 쉘에게 113을 리턴함.
 
 To check, type `echo $?` After this script exits.
 
-> Conventionally `exit 0` means success.A value other than `0` indicates an error or exception.
+> Conventionally `exit 0` means success.A value other than 0 indicates an error or exception.
 
 `$?` Is particularly useful for checking the results of a command to be executed in a script
 
-## Deny the condition with `!`
+## Deny the condition with !
 
 The logical no qualifier `!` Affects the exit status by reversing the result of a test or command.
 
