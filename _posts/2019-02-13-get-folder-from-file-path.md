@@ -1,8 +1,8 @@
 ---
 layout: post
 comments: ture
-title: "[Shell] How to extract directory path and file name from file path using sed"
-description: "[Shell] How to get directory from file path using sed"
+title: "[Shell] Extract directory path and file name from file path"
+description: "How to extract directory path and file name from file path using sed and basename"
 categories: [Shell Script]
 tags: [Script, Shell, Bash, sed, folder, file, path, directory]
 redirect_from:
