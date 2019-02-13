@@ -19,5 +19,6 @@ function get_dir() {
 
 FILE_PATH=/test/test/test/asdf.txt
 RES=`get_dir ${FILE_PATH}`
+
 echo RES
 ```
