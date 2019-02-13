@@ -12,6 +12,7 @@ redirect_from:
 * Kramdown table of contents
 {:toc .toc}
 
+# Exit and exit status
 `exit` 명령어는 C 프로그램에서처럼 스크립트를 끝낼 때 씁니다. 또한, 스크립트의 부모 프로세스에게 어떤 값을 돌려 줄 수도 있습니다.
 
 모든 명령어는 종료 상태(exit status (가끔은 리턴 상태( return status)라고도 하는)를 리턴합니다. 명령어가 성공시에는 0을 리턴하고 실패시에는 에러 코드로 해석될 수 있는 non-zero를 리턴합니다. 예외가 있기는 하지만, 유닉스 관례를 잘 따르는 명령어, 프로그램, 유틸리티는 성공했을 때 0을 리턴합니다.
