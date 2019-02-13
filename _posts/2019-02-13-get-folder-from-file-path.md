@@ -47,9 +47,9 @@ RES=`extract_file_name ${FILE_PATH}`
 
 echo RES`
 ```
-### About basename
+## About basename
 basename is a standard computer program on Unix and Unix-like operating systems. When basename is given a pathname, it will delete any prefix up to the last slash ('/') character and return the result. basename is described in the Single UNIX Specification and is primarily used in shell scripts.
-#### Usage
+### Usage
 The Single UNIX Specification specification for basename is.
 ``` bash
 $ basename string [suffix]
@@ -59,7 +59,7 @@ $ basename string [suffix]
 * suffix
   * If specified, basename will also delete the suffix.
 
-#### Examples
+### Examples
 
 basename will retrieve the last name from a pathname ignoring any trailing slashes
 ``` bash
