@@ -6,59 +6,117 @@ description: ""
 categories: [Shell]
 tags: [Shell, bash, exit]
 redirect_from:
-  - /2018/12/06/
+  - /2019/02/13/
 ---
 
 * Kramdown table of contents
 {:toc .toc}
 
-# Exit and exit status
+The `exit` command terminates a script, just as in a C program. It can also return a value, which is available to the script's parent process.
 
-The `exit` command is used to end the script as in the C program. It can also return some value to the script's parent process.
+Every command returns an exit status (sometimes referred to as a return status or exit code). A successful command returns a 0, while an unsuccessful one returns a non-zero value that usually can be interpreted as an error code. Well-behaved UNIX commands, programs, and utilities return a 0 exit code upon successful completion, though there are some exceptions.
 
-All commands return an exit status (sometimes referred to as return status), which returns a zero on success, or a non-zero that can be interpreted as an error code on failure. However, UNIX-compliant commands, programs, and utilities return zero on success.
+Likewise, functions within a script and the script itself return an exit status. The last command executed in the function or script determines the exit status. Within a script, an `exit nnn` command may be used to deliver an `nnn` exit status to the shell (nnn must be an integer in the 0 - 255 range).
 
-Similarly, the script's function or script itself returns the exit status. The last command executed in the script function or script determines the exit status. In the script, `exit nnn` tells the exit status of the script is `nnn` (`nnn` must be a decimal number between 0 and 255).
-
-> Note: If you just `exit` with no parameters, the exit status of the last executed command (except exit itself) will be the exit status of the script.
-
-`$?` Shows the exit status of the last instruction. If `$?` Is returned after the function returns, the exit status of the last instruction of the function is reported. Bash does this by returning the ***return value*** of the function. After the script exits, you can use `$?` On the command line to determine the exit status of the last command in the script. Conventionally, 0 indicates success and numbers 1 through 255 indicate an error.
-
-# Example
-
-## Exit and exit status
+When a script ends with an exit that has no parameter, the exit status of the script is the exit status of the last command executed in the script (previous to the exit).
 
 ``` bash
 #!/bin/bash
+
+COMMAND_1
+
+. . .
+
+COMMAND_LAST
+
+exit # Will exit with status of last command.
+```
+
+The equivalent of a bare exit is exit $? or even just omitting the exit.
+
+
+``` bash
+#!/bin/bash
+
+COMMAND_1
+
+. . .
+
+COMMAND_LAST
+
+exit $? # Will exit with status of last command.
+```
+
+``` bash
+#!/bin/bash
+
+COMMAND1
+
+. . . 
+
+COMMAND_LAST
+
+# Will exit with status of last command.
+```
+
+`$?` reads the exit status of the last command executed. After a function returns, $? gives the exit status of the last command executed in the function. This is Bash's way of giving functions a **return value.**[^1]
+
+Following the execution of a pipe, a $? gives the exit status of the last command executed.
+
+After a script terminates, a $? from the command-line gives the exit status of the script, that is, the last command executed in the script, which is, by convention, 0 on success or an integer in the range 1 - 255 on error.
+
+# Example exit / exit status
+``` bash
+#!/bin/bash
+
 echo hello
-echo $?    # 명령어가 성공했기 때문에 종료 상태 0이 리턴됨.
+echo $?    # Exit status 0 returned because command executed successfully.
 
-lskdf      # 알수없는 명령어.
-echo $?    # 0이 아닌 종료 상태가 리턴됨.
+lskdf      # Unrecognized command.
+echo $?    # Non-zero exit status returned -- command failed to execute.
 
-exit 113   # 쉘에게 113을 리턴함.
+echo
+
+exit 113   # Will return 113 to shell.
+           # To verify this, type "echo $?" after script terminates.
 ```
+By convention, an `exit 0` indicates success, while a non-zero exit value means an error or anomalous condition. 
+<!-- See the "Exit Codes With Special Meanings" appendix. -->
 
-To check, type `echo $?` After this script exits.
+`$?` is especially useful for testing the result of a command in a script
 
-> Conventionally `exit 0` means success.A value other than 0 indicates an error or exception.
+The !, the logical not qualifier, reverses the outcome of a test or command, and this affects its exit status.
 
-`$?` Is particularly useful for checking the results of a command to be executed in a script
+# Negating a condition using !
+``` bash
+true    # The "true" builtin.
+echo "exit status of \"true\" = $?" # 0
+```
+``` bash
+! true
+echo "exit status of \"! true\" = $?" # 1
+```
+Note that the `!` needs a space between it and the command. `!true` leads to a **command not found** error
 
-## Deny the condition with !
-
-The logical no qualifier `!` Affects the exit status by reversing the result of a test or command.
+The `!` operator prefixing a command invokes the Bash history mechanism.
 
 ``` bash
-$ true  # 쉘 내장명령어인 "true".
-$ echo "\"true\"의 종료 상태 = $?"
-"true"의 종료 상태 = 0
+true
+!true
 ```
+No error this time, but no negation either. It just repeats the previous command (true).
 
+Preceding a _pipe_ with ! inverts the exit status returned.
 ``` bash
-$ ! true
-$ echo "\"! true\"의 종료 상태 = $?"
-"! true"의 종료 상태 = 1
+ls | bogus_command     # bash: bogus_command: command not found
+echo $?                # 127
 ```
+``` bash
+! ls | bogus_command   # bash: bogus_command: command not found
+echo $?                # 0
+```
+Note that the ! does not change the execution of the pipe. Only the exit status changes.
 
-One thing to be careful about is that when you use `!`, There must be a blank space. Just write `!True` to get a ***command not found*** error.
+Certain exit status codes have reserved meanings and should not be user-specified in a script.
+
+[^1]: In those instances when there is no return terminating the function.
