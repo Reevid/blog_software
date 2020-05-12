@@ -1,8 +1,8 @@
 ---
 layout: post
 comments: ture
-title: "[Shell] Listing file by date"
-description: "[Shell] Listing file by date"
+title: "[Shell] Listing files by date"
+description: "[Shell] Listing files by date"
 categories: [Shell]
 tags: [Shell, ls, date, order, file, linux, bash]
 redirect_from:
