@@ -13,7 +13,7 @@ redirect_from:
 {:toc .toc}
 
 # Queueing
-
+[origin page](https://www.netcheif.com/Articles/uTorrent/html/AppendixA_02_08.html#Seeding_Goal.Minimum_seeding_time)
 ![](https://raw.githubusercontent.com/Reevid/blog_software/master/_posts/utorrent-preference-queueing-page.PNG)
 
 ## Queue Settings
