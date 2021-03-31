@@ -3,11 +3,15 @@ layout: post
 comments: ture
 title: "왜 리플렉션은 느린가?"
 description: "왜 리플렉션은 느린가?"
-categories: [DotNET]]
+categories: [DotNET]
 tags: [DotNET, C#, Reflection, 리플렉션]
 redirect_from:
   - /2018/03/31/
 ---
+
+* Kramdown table of contents
+{:toc .toc}
+
 # Reflection이 느린 이유
 * [Why is reflection slow?](https://mattwarren.org/2016/12/14/Why-is-Reflection-slow/) 글 참고 하여 작성함
 ## 배경
